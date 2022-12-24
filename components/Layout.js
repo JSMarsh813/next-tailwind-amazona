@@ -69,6 +69,7 @@ export default function Layout({ title, children }) {
                 <SearchIcon className="h-5 w-5"></SearchIcon>
               </button>
             </form>
+            
             <div>
               <Link href="/cart">
                 <a className="p-2">

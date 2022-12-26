@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 
 export default function LoginScreen() {
   const { data: session } = useSession();
-
+  //!!
   const router = useRouter();
   const { redirect } = router.query;
 

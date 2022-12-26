@@ -1,8 +1,8 @@
-import Link from 'next/link';
+import Link from 'next/Link'
 import React, { useEffect } from 'react';
 import { signIn, useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout'
 import { getError } from '../utils/error';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
@@ -16,7 +16,7 @@ export default function LoginScreen() {
 
   useEffect(() => {
     if (session?.user) {
-      router.push(redirect || '/');
+      router.push('/');
     }
   }, [router, session, redirect]);
 
@@ -41,6 +41,16 @@ export default function LoginScreen() {
       });
       if (result.error) {
         toast.error(result.error);
+      }
+      else {
+        
+        toast.success("Successfully signed up! Sending to profile page")
+        console.log(result)
+        // Object { error: null, status: 200, ok: true, url: "http://localhost:3000/api/auth/signin?csrf=true" }
+        console.log(`email: ${email} pass:${password}`)
+        //email: kyunyu@gmail.com pass:testtest
+        //and appears in mongodb users collection
+        router.push("/")
       }
     } catch (err) {
       toast.error(getError(err));

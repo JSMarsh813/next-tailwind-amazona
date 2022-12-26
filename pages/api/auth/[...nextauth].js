@@ -21,11 +21,12 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
+
         await db.connect();
         const user = await User.findOne({
           email: credentials.email,
         });
-       
+      
         if (user && bcryptjs.compareSync(credentials.password, user.password)) {
           return {
             _id: user._id,

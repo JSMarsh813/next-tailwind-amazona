@@ -7,6 +7,9 @@ import db from '../../../utils/db';
 export default NextAuth({
   session: {
     strategy: 'jwt',
+       // Set to jwt in order for CredentialsProvider to work properly
+    //https://next-auth.js.org/configuration/providers/credentials
+    //https://github.com/nextauthjs/next-auth/issues/3970
   },
   callbacks: {
     async jwt({ token, user }) {

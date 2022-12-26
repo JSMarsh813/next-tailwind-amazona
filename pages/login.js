@@ -9,13 +9,14 @@ import { useRouter } from 'next/router';
 
 export default function LoginScreen() {
   const { data: session } = useSession();
-  //!!
+  
   const router = useRouter();
   const { redirect } = router.query;
 
   useEffect(() => {
     if (session?.user) {
-      router.push(redirect || '/');
+      router.push(redirect || '/')
+      console.log(session)
     }
   }, [router, session, redirect]);
 
@@ -33,6 +34,15 @@ export default function LoginScreen() {
       });
       if (result.error) {
         toast.error(result.error);
+      }
+      else {
+        
+        toast.success("Successfully signed in! Sending to profile page")
+        console.log(`login.js submitHandler else block ${JSON.stringify(result)}`)
+        // Object { error: null, status: 200, ok: true, url: "http://localhost:3000/api/auth/signin?csrf=true" }
+        console.log(`email: ${email} pass:${password}`)
+        //email: kyunyu@gmail.com pass:testtest
+        // router.push("/")
       }
     } catch (err) {
       toast.error(getError(err));

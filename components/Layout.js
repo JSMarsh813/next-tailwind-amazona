@@ -1,12 +1,12 @@
 import { signOut, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import React, { useContext, useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { Menu } from '@headlessui/react';
 import 'react-toastify/dist/ReactToastify.css';
-import { Store } from '../utils/Store';
+// import { Store } from '../utils/Store';
 import DropdownLink from './DropdownLink';
 import { useRouter } from 'next/router';
 import { SearchIcon } from '@heroicons/react/outline';
@@ -14,16 +14,16 @@ import { SearchIcon } from '@heroicons/react/outline';
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
 
-  const { state, dispatch } = useContext(Store);
-  const { cart } = state;
-  const [cartItemsCount, setCartItemsCount] = useState(0);
-  useEffect(() => {
-    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
-  }, [cart.cartItems]);
+  // const { state, dispatch } = useContext(Store);
+  // const { cart } = state;
+  // const [cartItemsCount, setCartItemsCount] = useState(0);
+  // useEffect(() => {
+  //   setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  // }, [cart.cartItems]);
 
   const logoutClickHandler = () => {
-    Cookies.remove('cart');
-    dispatch({ type: 'CART_RESET' });
+    // Cookies.remove('cart');
+    // dispatch({ type: 'CART_RESET' });
     signOut({ callbackUrl: '/login' });
   };
 
@@ -66,12 +66,12 @@ export default function Layout({ title, children }) {
                 type="submit"
                 id="button-addon2"
               >
-                <SearchIcon className="h-5 w-5"></SearchIcon>
+                {/* <SearchIcon className="h-5 w-5"></SearchIcon> */}
               </button>
             </form>
             
             <div>
-              <Link href="/cart">
+              {/* <Link href="/cart">
                 <a className="p-2">
                   Cart
                   {cartItemsCount > 0 && (
@@ -80,7 +80,7 @@ export default function Layout({ title, children }) {
                     </span>
                   )}
                 </a>
-              </Link>
+              </Link> */}
 
               {status === 'loading' ? (
                 'Loading'
